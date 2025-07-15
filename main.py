@@ -19,13 +19,9 @@ async def generate_image(data: NewsSummary):
     img = Image.new("RGB", (1080, 1080), color="white")
     draw = ImageDraw.Draw(img)
 
-    # ✅ 폰트 경로 설정 (같은 디렉토리에 fonts 폴더 만들고 .ttf 넣기)
+    # 프로젝트 내 폰트 경로 지정
     font_path = Path(__file__).parent / "fonts" / "나눔손글씨 다시 시작해.ttf"
-    try:
-        font = ImageFont.truetype(str(font_path), size=36)
-    except Exception as e:
-        print(f"폰트 로드 오류: {e}")
-        font = ImageFont.load_default()
+    font = ImageFont.truetype(str(font_path), size=36)
 
     # ✅ 텍스트 줄바꿈
     lines = textwrap.wrap(text, width=35)
